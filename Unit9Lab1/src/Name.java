@@ -8,6 +8,9 @@ public class Name {
 	private String Middle;
 	private String Last;
 	private String Title;
+	public Name(){
+		
+	}
 	public Name(String First, String Last){
 		this.First=First;
 		this.Last=Last;
@@ -23,5 +26,17 @@ public class Name {
 	}
 	public void setLast(String last){
 		this.Last=last;
+	}
+	public String getMiddle(){
+		return Middle;
+	}
+	public void setMiddle(String middle){
+		this.Middle=middle;
+	}
+	public String getTitle(){
+		return Title;
+	}
+	public void setTitle(String title){
+		this.Title=title;
 	}
 }

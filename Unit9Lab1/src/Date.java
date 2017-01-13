@@ -30,8 +30,7 @@ public class Date
 
    public Date(int day, int month, int year) 
    { 
-      if (month < 1 || month >= 12)
-         throw new IllegalArgumentException("Month must be 1-12");
+     
 
       this.day=day;
       this.month=month;
@@ -65,5 +64,8 @@ public class Date
    }
    public void displayDate(){
 	   JOptionPane.showMessageDialog( null, "The Date is ".concat(Integer.toString(month).concat("/".concat(Integer.toString(day).concat("/".concat(Integer.toString(year)))))));
+   }
+   public String returnDate(){
+	   return "His BDay is ".concat(Integer.toString(month).concat("/".concat(Integer.toString(day).concat("/".concat(Integer.toString(year))))));
    }
 } 

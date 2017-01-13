@@ -2,8 +2,9 @@
 public class PersonTesting {
 
 	public static void main(String[] args) {
-		Date date= new Date(14,10,02);
-		date.displayDate("Test");
+		Person A = new Person("Tony Baggadonuts","10/21/2001");
+		System.out.println(A.getBDay());
+		System.out.println(A.getName());
 	}
 
 }
