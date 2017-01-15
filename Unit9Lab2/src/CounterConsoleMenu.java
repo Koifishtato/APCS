@@ -1,7 +1,7 @@
 /**
  * Class to make a counter console menu
- * @author A
- *
+ * @author Alexander Loeffler
+ * @version 1.0
  */
 import java.util.Scanner;
 public class CounterConsoleMenu {
@@ -9,6 +9,12 @@ public class CounterConsoleMenu {
 	public static void openMenu(Counter a){
 		mainMenu(a);
 	}
+	/**
+	 * Opens the Main menu
+	 * @param a
+	 * Counter to work with
+	 *
+	 */
 	private static void mainMenu(Counter a){
 		while(true){
 		System.out.printf("1) Increment Counter%n2) Decrement Counter%n3) Reset Counter%n4) Quit%nCurrent: %d%n",a.get());

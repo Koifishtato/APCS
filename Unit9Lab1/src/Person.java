@@ -4,8 +4,8 @@
  *@version 1.0
  */
 public class Person {
-	private Name name;
-	private Date BDay;
+	public Name name;
+	public Date BDay;
 	
 	public Person(String Name, String BDay){
 		this.name = new Name();
