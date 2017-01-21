@@ -11,7 +11,7 @@ public class Person {
 	protected String email;
 	protected String phone;
 	protected Date bday;
-	
+	private int test;
 	public Person(String name){
 		this.name=name;
 	}
