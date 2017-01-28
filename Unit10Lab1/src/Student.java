@@ -24,4 +24,8 @@ public class Student extends Person {
 	public Class getSClass(){
 		return class_;
 	}
+	@Override
+	public String toString(){
+		return getName().concat(" is a Student");
+	}
 }

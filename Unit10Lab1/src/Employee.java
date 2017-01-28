@@ -22,4 +22,8 @@ public class Employee extends Person{
 	public void setHire(Date hire) {
 		this.hire = hire;
 	}
+	@Override
+	public String toString(){
+		return getName().concat(" is an Employee");
+	}
 }

@@ -58,4 +58,7 @@ public class Person {
 		bday.setMonth(Integer.parseInt(split[0]));
 		bday.setYear(Integer.parseInt(split[2]));
 	}
+	public String toString(){
+		return getName().concat(" is a Person");
+	}
 }
