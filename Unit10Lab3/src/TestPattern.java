@@ -1,4 +1,8 @@
-
+/**
+ * Class to test the Publisher And Subscriber Classes
+ * @author Alexander Loeffler
+ * @version 1.0
+ */
 public class TestPattern {
 	public static void main( String [] args )
 	 {

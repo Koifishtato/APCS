@@ -1,6 +1,6 @@
 /**
  * Tests the Person classes and subclasses.
- * @author a
+ * @author Alexander Loeffler
  *
  */
 public class PeopleTesting {
