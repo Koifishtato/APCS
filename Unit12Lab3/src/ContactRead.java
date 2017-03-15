@@ -1,13 +1,23 @@
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ContactRead {
 	private static ContactFile file;
 	private static Scanner input;
 	public static void main(String[] args) {
-		file = new ContactFile("Test.txt");
-		input=new Scanner(System.in);
-		while (true){
-		Menu();
+		while(true){
+		try {
+			input=new Scanner(System.in);
+			System.out.printf("What File would you like to open?");
+			file = new ContactFile(input.next());
+			while (true){
+				Menu();
+				}
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Invalid File!");
+		}
 		}
 	}
 	
@@ -15,13 +25,13 @@ public class ContactRead {
 		String temp;
 		String [] tempa;
 		System.out.printf("(1) List Contact(First Last)%n(2) Delete Contact(First Last)%n(3) Add Contact%n(4) Display Entire List%n(5) Save And Exit%n");
+		try{
 		switch(input.nextInt()){
 		case 1:
 			System.out.printf("First Last: ");
 			temp=input.next();
 			temp=temp.concat(" ").concat(input.next());
-			tempa=file.read(temp);
-			System.out.println(temp);
+			tempa=file.read(temp).get();
 			System.out.printf("First: %s%nLast: %s%nPhone: %s%nEmail: %s",tempa[0],tempa[1],tempa[2],tempa[3]);
 			break;
 		case 2:
@@ -49,10 +59,20 @@ public class ContactRead {
 			file.close();
 			System.exit(1);
 		}
+		}catch(InputMismatchException e){
+			System.out.println("Invalid Choice");
+			input.next();
+		}catch(NullPointerException e){
+			System.out.println("Not a valid choice");
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.err.println("Please Don't Touch the Save file! If this is not what happened I really don't know.");
+		}
 	}
 	public static void printAll(){
-		String [] [] AllContacts = file.getAll();
-		for(String[] contact : AllContacts){
+		Contact[] AllContacts = file.getAll();
+		String[] contact;
+		for(Contact contactin : AllContacts){
+			contact=contactin.get();
 			System.out.printf("First: %s%nLast: %s%nPhone: %s%nEmail: %s%n%n",contact[0],contact[1],contact[2],contact[3]);
 		}
 	}

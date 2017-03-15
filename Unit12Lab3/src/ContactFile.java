@@ -11,10 +11,10 @@ import java.util.TreeMap;
 public class ContactFile {
 	private File file;
 	private Scanner read;
-	private TreeMap <String,String[]> data= new <String,String[]> TreeMap();
+	private TreeMap <String,Contact> data= new <String,String[]> TreeMap();
 	private String path;
 	private Formatter output;
-	public ContactFile(String path){
+	public ContactFile(String path) throws FileNotFoundException{
 		this.path=path;
 		try{
 			file=new File(path);
@@ -23,21 +23,25 @@ public class ContactFile {
 			String temp;
 			while (read.hasNextLine()) {
 				temp=read.nextLine();
-                data.put(temp.split(",")[0].concat(" ").concat(temp.split(",")[1]), temp.split(","));
+                try{
+				data.put(temp.split(",")[0].concat(" ").concat(temp.split(",")[1]), new Contact(temp.split(",")));
+                }catch(ArrayIndexOutOfBoundsException e){
+                	System.out.println("Please do not input directly into the file!");
+                }
             }
 			output=new Formatter(path);
 		}
 		catch(FileNotFoundException e){
-			System.out.println("Invalid File Name");
+			throw e;
 		}
 	}
 	
-	public String[] read(String Name){
+	public Contact read(String Name){
 		return data.get(Name);
 	}
 	
 	public void add(String [] add){
-		data.put((add[0]+" "+add[1]), add);
+		data.put((add[0]+" "+add[1]), new Contact(add));
 		this.rewrite();
 	}
 	
@@ -47,17 +51,17 @@ public class ContactFile {
 		String temp;
 		while (read.hasNextLine()) {
 			temp=read.nextLine();
-            data.put(temp.split(",")[0].concat(" ").concat(temp.split(",")[1]), temp.split(","));
+            data.put(temp.split(",")[0].concat(" ").concat(temp.split(",")[1]), new Contact(temp.split(",")));
 		}
 	}
 	public void delete(String Name){
 		data.remove(Name);
 	}
-	public String[][] getAll(){
-		String [][] output= new String[data.size()][4];
+	public Contact[] getAll(){
+		Contact[] output= new Contact[data.size()];
 		int x=0;
 		for(Map.Entry contact : data.entrySet()){
-				String[] c = data.get(contact.getKey());
+				Contact c = data.get(contact.getKey());
 				output[x]=c;
 				x++;
 		}
@@ -72,12 +76,14 @@ public class ContactFile {
 			System.out.print("uhoh");
 		}
 		for(Map.Entry contact : data.entrySet()){
-			String[] c = data.get(contact.getKey());
+			Contact inc = data.get(contact.getKey());
+			String [] c=inc.get();
 			output.format("%s,%s,%s,%s%n", c[0],c[1],c[2],c[3]);
 		}	
 		
 	}
 	public void close(){
+		this.rewrite();
 		output.flush();
 		output.close();
 	}
